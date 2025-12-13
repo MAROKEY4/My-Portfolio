@@ -488,6 +488,168 @@
             border-radius: 5px;
         }
 
+    /*pictures for project section*/
+    /* Skills Logos Section */
+.skills-logos {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.logo-item {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    background: rgba(27, 220, 95, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: floatLogo 6s ease-in-out infinite;
+}
+
+/* Different animation delays for each logo */
+.logo-item:nth-child(1) { animation-delay: 0s; }
+.logo-item:nth-child(2) { animation-delay: 0.5s; }
+.logo-item:nth-child(3) { animation-delay: 1s; }
+.logo-item:nth-child(4) { animation-delay: 1.5s; }
+.logo-item:nth-child(5) { animation-delay: 2s; }
+.logo-item:nth-child(6) { animation-delay: 2.5s; }
+.logo-item:nth-child(7) { animation-delay: 3s; }
+.logo-item:nth-child(8) { animation-delay: 3.5s; }
+.logo-item:nth-child(9) { animation-delay: 4s; }
+.logo-item:nth-child(10) { animation-delay: 4.5s; }
+.logo-item:nth-child(11) { animation-delay: 5s; }
+.logo-item:nth-child(12) { animation-delay: 5.5s; }
+
+@keyframes floatLogo {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+.logo-item img {
+    width: 50px;
+    height: 50px;
+    filter: grayscale(0.3);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.logo-item:hover {
+    transform: scale(1.1);
+    background: rgba(27, 220, 95, 0.2);
+    box-shadow: 0 10px 20px rgba(27, 220, 95, 0.3);
+}
+
+.logo-item:hover img {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+/* Logo Overlay Text */
+.logo-overlay {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(11, 11, 43, 0.9);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: 1px solid var(--primary-color);
+}
+
+.logo-item:hover .logo-overlay {
+    opacity: 1;
+    visibility: visible;
+    bottom: -35px;
+}
+
+/* Glow Effect on Hover */
+.logo-item::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, 
+        rgba(27, 220, 95, 0.3), 
+        rgba(5, 205, 22, 0.3), 
+        rgba(0, 249, 37, 0.3));
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.logo-item:hover::before {
+    opacity: 1;
+    animation: rotateGlow 2s linear infinite;
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo-container {
+        gap: 20px;
+    }
+    
+    .logo-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .logo-item img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        gap: 15px;
+    }
+    
+    .logo-item {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo-item img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
         /* Projects Section */
         .projects-section {
             min-height: 100vh;
