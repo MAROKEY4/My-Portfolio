@@ -16,6 +16,7 @@
     --font-body: 'Exo 2', sans-serif;
 }
 
+
 html, body {
     width: 100%;
     height: 100%;
@@ -27,36 +28,45 @@ html, body {
     top: 0;
     left: 0;
 }
+body, body * {
+    cursor: none;
+}
 
-/* Green cursor fix */
 #cursor {
     position: fixed;
-    z-index: 9999;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
+    z-index: 99999;
+    width: 32px;
+    height: 32px;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: width 0.15s, height 0.15s;
-    box-shadow: 0 0 10px var(--accent);
+    transition: transform 0.1s ease;
+}
+
+#cursor i {
+    font-size: 28px;
+    color: #0cce36;
+    filter: drop-shadow(0 0 5px #00ffe7);
+    text-shadow: 0 0 10px rgba(0, 255, 231, 0.5);
 }
 
 #cursor-dot {
     position: fixed;
-    z-index: 9999;
+    z-index: 99999;
     width: 4px;
     height: 4px;
-    background: var(--accent);
+    background: #08c34a;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
+    opacity: 0;
 }
 
-#cursor.hover {
-    width: 38px;
-    height: 38px;
-    background: rgba(0, 255, 231, 0.1);
+/* Rocket hover effect */
+#cursor.hover i {
+    transform: scale(1.2);
+    color: #ff6b35;
+    filter: drop-shadow(0 0 10px #ff6b35);
+    transition: all 0.2s ease;
 }
 
 #spaceCanvas {
@@ -67,10 +77,10 @@ html, body {
     z-index: 0;
 }
 
-
-* {
-    cursor: default;
+input, textarea, button, a, .btn-primary, .btn-outline, .plink, .social-btn, #chatbotInput, #chatbotSend, .suggestion-btn {
+    cursor: pointer;
 }
+
 
 a, button, .btn-primary, .btn-outline, .plink, .social-btn, .tech-badge, #chatbotToggle, #soundControl {
     cursor: pointer;
@@ -1194,9 +1204,10 @@ body::after {
 
 #worldMapOverlay {
     position: fixed;
-    bottom: 24px;
+    top: 100px;
     right: 24px;
-    width: 180px;
+    width: 120px;
+    height: 190px;;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
     border-radius: 12px;
@@ -1207,6 +1218,8 @@ body::after {
     pointer-events: none;
 }
 
+
+
 #floatingCompassGuide {
     position: fixed;
     bottom: 80px;
@@ -1215,7 +1228,7 @@ body::after {
     backdrop-filter: blur(10px);
     border-radius: 10px;
     border: 1px solid rgba(0, 255, 231, 0.3);
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-family: var(--font-hud);
     z-index: 100;
     pointer-events: none;
@@ -1223,12 +1236,17 @@ body::after {
 
 #aiChatbot {
     position: fixed;
-    bottom: 90px;
+    bottom: 24px;
     right: 24px;
-    z-index: 1000;
+    z-index: 9999;
     font-family: var(--font-hud);
 }
-
+#chatbotWindow.open {
+    z-index: 9998;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+}
 #chatbotToggle {
     width: 60px;
     height: 60px;
@@ -1406,11 +1424,11 @@ body::after {
 
 #soundControl {
     position: fixed;
-    bottom: 24px;
+    bottom: 100px;
     right: 24px;
     width: 45px;
     height: 45px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 50%;
     border: 1px solid #00ffe7;
@@ -1418,52 +1436,30 @@ body::after {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 10000;
+    transition: all 0.3s ease;
 }
+
 
 #soundControl i {
     font-size: 1.2rem;
     color: #00ffe7;
 }
 
-.volume-container {
-    position: fixed;
-    bottom: 24px;
-    right: 90px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 8px 15px;
-    border-radius: 30px;
-    border: 1px solid rgba(0, 255, 231, 0.3);
-    z-index: 9999;
+
+#aiChatbot {
+    z-index: 9999 !important;
 }
 
-.volume-container i {
-    color: #00ffe7;
-    font-size: 0.9rem;
+#chatbotWindow.open {
+    z-index: 10001 !important;
 }
 
-#volumeSlider {
-    width: 80px;
-    height: 3px;
-    -webkit-appearance: none;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    outline: none;
-    cursor: pointer;
+#soundControl:hover
+ {
+    z-index: 10002 !important;
 }
 
-#volumeSlider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
-    background: #00ffe7;
-    border-radius: 50%;
-    cursor: pointer;
-}
 
 /* ========== RESPONSIVE MOBILE FIXES ========== */
 
@@ -1488,6 +1484,18 @@ body::after {
     }
     .planet {
         display: none;
+    }
+
+        #worldMapOverlay {
+        top: 90px;
+        right: 20px;
+        width: 160px;
+    }
+    
+    #floatingCompassGuide {
+        bottom: 70px;
+        left: 15px;
+        padding: 6px 10px;
     }
 }
 
@@ -1580,56 +1588,66 @@ body::after {
         display: none !important;
     }
     
-    #worldMapOverlay {
+#worldMapOverlay {
         top: 80px !important;
-        bottom: auto !important;
         right: 10px !important;
-        width: 140px !important;
+        width: 130px !important;
         padding: 6px !important;
     }
     
+     #worldMapOverlay svg {
+        width: 110px !important;
+        height: 110px !important;
+    }
     #floatingCompassGuide {
         left: 10px;
         bottom: 100px;
-        padding: 6px 8px;
-        font-size: 0.45rem;
+        padding: 5px 8px;
+        font-size: 0.4rem;
+        max-width: 150px;
     }
     
-    #soundControl {
-        bottom: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
+   #soundControl {
+        bottom: 75px !important;
+        right: 10px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
     
-    .volume-container {
-        bottom: 15px;
-        right: 70px;
-        padding: 5px 12px;
+    
+    
+   #aiChatbot {
+        bottom: 15px !important;
+        right: 10px !important;
+    }
+      #chatbotToggle {
+        width: 45px !important;
+        height: 45px !important;
     }
     
-    #volumeSlider {
-        width: 60px;
+    #chatbotToggle i {
+        font-size: 1.2rem !important;
     }
     
-    #aiChatbot {
-        bottom: 70px;
-        right: 15px;
-    }
-    
-    #chatbotToggle {
-        width: 50px;
-        height: 50px;
-    }
     
     #chatbotWindow {
         width: 280px;
         height: 400px;
-        bottom: 70px;
+        bottom: 0px;
+        right: 0;
     }
 }
 
 @media (max-width: 479px) {
+      #worldMapOverlay {
+        bottom: 150px !important;
+        width: 110px !important;
+    }
+    
+    #worldMapOverlay svg {
+        width: 90px !important;
+        height: 90px !important;
+    }
     .hero-name {
         font-size: 1.5rem;
     }

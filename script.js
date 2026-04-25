@@ -6,6 +6,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const travelFlash = document.getElementById('travelFlash');
     const cursor = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
+    
+    // Set rocket icon
+    if (cursor) {
+        cursor.innerHTML = '<i class="fas fa-rocket"></i>';
+    }
+    
+    function updateCursor(e) {
+        if (cursor) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Add slight rotation effect based on mouse movement
+            const rotation = (e.movementX + e.movementY) * 2;
+            cursor.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        }
+        if (cursorDot) {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        }
+    }
+    
+    document.addEventListener('mousemove', updateCursor);
+    
+    // Add hover effect on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .btn-primary, .btn-outline, .plink, .social-btn, .tech-badge, #chatbotToggle, #soundControl, .suggestion-btn, .project-card, .skill-card');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            if (cursor) cursor.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            if (cursor) cursor.classList.remove('hover');
+        });
+    });
     const notification = document.getElementById('notification');
     const currentSectorSpan = document.getElementById('currentSector');
     const navLinks = document.querySelectorAll('#navList li a');
@@ -320,12 +353,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    function initMobileDrag() {
+       function initMobileDrag() {
         let dragActive = false;
         let dragStartX = 0, dragStartY = 0;
         let dragStartTargetX = 0, dragStartTargetY = 0;
         
+        function isScrollablePanel(element) {
+            let target = element;
+            for (let i = 0; i < 10; i++) {
+                if (!target) break;
+                if (target.id === 'station-skills' || target.id === 'station-projects' || target.id === 'station-contact') {
+                    return true;
+                }
+                if (target.classList && target.classList.contains('station-panel')) {
+                    const parent = target.parentElement;
+                    if (parent && (parent.id === 'station-skills' || parent.id === 'station-projects' || parent.id === 'station-contact')) {
+                        return true;
+                    }
+                }
+                target = target.parentElement;
+            }
+            return false;
+        }
+        
         function onTouchStart(e) {
+            // Ignore if touching menu toggle or nav list
+            if (e.target.closest('#menuToggle') || e.target.closest('#navList')) {
+                return;
+            }
+            
             const isScrollable = isScrollablePanel(e.target);
             
             if (isScrollable) {
@@ -429,30 +485,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: false });
         
         document.body.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 2) {
+            if (e.touches.length === 2 && initialDistance > 0) {
                 e.preventDefault();
                 const newDistance = getDistance(e.touches);
                 const scaleChange = newDistance / initialDistance;
                 targetScale = Math.min(Math.max(initialScale * scaleChange, 0.5), 2.5);
             }
         }, { passive: false });
+        
+        document.body.addEventListener('touchend', (e) => {
+            initialDistance = 0;
+        });
     }
 
     function initDoubleTapReset() {
         let lastTap = 0;
+        let tapTimeout = null;
         
         document.body.addEventListener('touchstart', (e) => {
             const now = Date.now();
-            if (now - lastTap < 300) {
+            if (now - lastTap < 300 && e.touches.length === 1) {
                 e.preventDefault();
                 targetScale = 1;
                 showNotification('VIEW RESET');
+                lastTap = 0;
+            } else {
+                lastTap = now;
             }
-            lastTap = now;
-        });
+        }, { passive: false });
     }
+    
 
-      function initMusic() {
+          function initMusic() {
         bgMusic = document.getElementById('bgMusic');
         if (bgMusic) {
             bgMusic.volume = 0.3;
@@ -470,28 +534,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 bgMusic.volume = newVolume;
                 console.log('Volume changed to:', newVolume);
             });
+            
+            // Add touch event for mobile
+            volumeSlider.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+            }, { passive: false });
         }
         
-        // Volume down button
+        // Volume down button - support both click and touch
         if (volumeDown && bgMusic) {
-            volumeDown.addEventListener('click', () => {
+            const handleVolumeDown = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 let currentVolume = bgMusic.volume;
                 let newVolume = Math.max(0, currentVolume - 0.1);
                 bgMusic.volume = newVolume;
                 if (volumeSlider) volumeSlider.value = newVolume * 100;
-                showNotification('Volume: ' + Math.round(newVolume * 100) + '%');
-            });
+                showNotification('🔉 Volume: ' + Math.round(newVolume * 100) + '%');
+            };
+            
+            volumeDown.addEventListener('click', handleVolumeDown);
+            volumeDown.addEventListener('touchstart', handleVolumeDown, { passive: false });
         }
         
-        // Volume up button
         if (volumeUp && bgMusic) {
-            volumeUp.addEventListener('click', () => {
+            const handleVolumeUp = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 let currentVolume = bgMusic.volume;
                 let newVolume = Math.min(1, currentVolume + 0.1);
                 bgMusic.volume = newVolume;
                 if (volumeSlider) volumeSlider.value = newVolume * 100;
-                showNotification('Volume: ' + Math.round(newVolume * 100) + '%');
-            });
+                showNotification('🔊 Volume: ' + Math.round(newVolume * 100) + '%');
+            };
+            
+            volumeUp.addEventListener('click', handleVolumeUp);
+            volumeUp.addEventListener('touchstart', handleVolumeUp, { passive: false });
         }
     }
 
@@ -757,8 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Mobile menu toggle - FIXED
-        if (menuToggle && navList) {
+      if (menuToggle && navList) {
             menuToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
