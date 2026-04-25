@@ -20,7 +20,6 @@
 <div class="planet" id="planet1"></div>
 <div class="planet" id="planet2"></div>
 <div class="planet" id="planet3"></div>
-
 <div class="moon" id="moon"></div>
 <!-- Moon Craters -->
 <div class="moon-crater crater1"></div>
@@ -35,7 +34,6 @@
 <div class="earth-ice"></div>
 <div class="earth-ice earth-ice-bottom"></div>
 <div class="earth" id="earth"></div>
-
 <audio id="bgMusic" loop preload="auto">
     <source src="space.mp3" type="audio/mpeg">
 </audio>
@@ -144,41 +142,20 @@
                         <a href="https://github.com/MAROKEY4/To-Do-List" class="plink" target="_blank">GitHub</a>
                     </div>
                 </div>
-
-                <div class="proj-card">
-    <div class="wip-tag">🚀 IN PROGRESS</div>
-    <div class="proj-icon"><i class="fas fa-paw"></i></div>
-    <h3>Wildlife Conservation System</h3>
-    <p>Full-stack platform for wildlife tracking, species monitoring, and conservation efforts with real-time data visualization.</p>
-    <div class="tags">
-        <span class="tag">HTML/CSS/JS</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">SQL</span>
-        <span class="tag">Python</span>
-        <span class="tag">API</span>
-    </div>
-    <div class="proj-links">
-        <a href="https://wildlife-conservation-system.vercel.app" class="plink" target="_blank">Live Demo</a>
-        <a href="#" class="plink disabled">GitHub</a>
-    </div>
-    <div class="progress-track"><div class="progress-fill" style="width: 65%"></div></div>
-    <div class="progress-text">65% Complete · Database + Backend in progress</div>
-</div>
                 
                 <div class="proj-card">
                     <div class="wip-tag">🚀 IN PROGRESS</div>
-                    <div class="proj-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Flight Booking System</h3>
-                    <p>Full-stack flight booking with real-time database and modern stack.</p>
-                    <div class="tags"><span class="tag">React</span><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+                    <div class="proj-icon"><i class="fas fa-paw"></i></div>
+                    <h3>Wildlife Conservation System</h3>
+                    <p>Full-stack platform for wildlife tracking, species monitoring, and conservation efforts.</p>
+                    <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">SQL</span><span class="tag">Python</span></div>
                     <div class="proj-links">
-                        <a href="#" class="plink disabled">Live Demo</a>
+                        <a href="https://wildlife-conservation-system.vercel.app" class="plink" target="_blank">Live Demo</a>
                         <a href="#" class="plink disabled">GitHub</a>
                     </div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 35%"></div></div>
-                    <div class="progress-text">35% Complete</div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 45%"></div></div>
+                    <div class="progress-text">45% Complete · Authentication in progress</div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -298,10 +275,14 @@
 
 <div id="notification">✓ SIGNAL TRANSMITTED</div>
 
-
-
 <div id="soundControl">
     <i class="fas fa-music"></i>
+</div>
+
+<div class="volume-container">
+    <i class="fas fa-volume-down" id="volumeDownBtn"></i>
+    <input type="range" id="volumeSlider" min="0" max="100" value="30">
+    <i class="fas fa-volume-up" id="volumeUpBtn"></i>
 </div>
 
 <div id="aiChatbot">
