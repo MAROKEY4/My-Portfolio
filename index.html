@@ -2,387 +2,336 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>omar rodi Portfolio</title>
-    <link rel="icon" href="pictures/RODI OMAR.png" alt="OMAR RODI Logo" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Omar Rodi — Space Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <img src="pictures/RODI OMAR.png" alt="OMAR RODI Logo">
-        </div>
-        <ul id="navList">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact" class="nav-contact">Contact</a></li>
-        </ul>
-        <div class="list-icon">
-            <i class="fa-solid fa-bars" id="menuToggle"></i>
-        </div>
-    </nav>
 
-    <section id="home" class="home-section">
-         <div class="home-bg-elements">
-        <div class="floating-shape"></div>
-        <div class="floating-shape"></div>
-        <div class="floating-shape"></div>
-    </div>
-        <div class="wrapper">
-            <div class="static-txt"><span>Hi there &#128075; , I'm</span></div>
-            <ul class="dynamic-txts">
-                <li><span>Omar Rodi</span></li>
-                <li><span>Web Developer</span></li>
-                <li><span>FUTURE FULL-STACK DEV</span></li>
-                <li><span>Innovator</span></li>
-            </ul>
-            <span class="small-pre">I'm a third-year Computer Engineering student with a strong interest in web development.</span>
-            <a href="#contact" class="hire-me">Hire Me</a>
-        </div>
-    </section>
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
 
-    <section id="about" class="about-section">
-        <h2 class="section-title">ABOUT ME</h2>
-        <div class="about-content">
-            <img class="me fade-in-left" src="pictures/Subject-removebg-preview (1).png" alt="Omar Rodi">
-            <div class="about-text fade-in-right">
-                <h1 class="welcome">Hi There &#128075; , I'm OMAR RODI</h1>
-                <span class="domain">Computer Engineer</span>
-                <p class="about-desc">I'm a passionate third-year Computer Engineering student with a strong focus on web development and creating innovative digital solutions. I enjoy turning complex problems into simple, beautiful designs.
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or learning about the latest trends in web development.</p>
-                <a href="My CV.pdf" class="hire-me" download>CV</a>
+<canvas id="spaceCanvas"></canvas>
+<canvas id="speedCanvas"></canvas>
+<div id="travelFlash"></div>
+
+<div class="planet" id="planet1"></div>
+<div class="planet" id="planet2"></div>
+<div class="planet" id="planet3"></div>
+
+<div class="moon" id="moon"></div>
+<!-- Moon Craters -->
+<div class="moon-crater crater1"></div>
+<div class="moon-crater crater2"></div>
+<div class="moon-crater crater3"></div>
+<div class="moon-crater crater4"></div>
+<div class="moon-crater crater5"></div>
+<div class="moon-crater crater6"></div>
+
+<!-- Earth Clouds -->
+<div class="earth-clouds"></div>
+<div class="earth-ice"></div>
+<div class="earth-ice earth-ice-bottom"></div>
+<div class="earth" id="earth"></div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="space.mp3" type="audio/mpeg">
+</audio>
+
+<div id="world">
+    
+    <div class="station" id="station-home" data-x="0" data-y="0">
+        <div class="station-label">HOME</div>
+        <div class="station-panel">
+            <div class="orbit-rings">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
             </div>
-        </div>
-    </section>
-
-    <section id="skills" class="skills-section">
-        <h2 class="section-title">MY SKILLS</h2>
-        <div class="skills-container">
-            <div class="skill-category fade-in-up">
-                <h3>Frontend Development</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>HTML/CSS</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JavaScript</span>
-                        <span>45%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 45%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>React</span>
-                        <span>20%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 20%"></div>
-                    </div>
-                </div>
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            
+            <p class="greeting-tag">▸ SIGNAL DETECTED · WEB DEVELOPER</p>
+            <h1 class="hero-name">OMAR<br>RODI</h1>
+            
+            <div class="role-ticker">
+                <span>WEB DEVELOPER</span>
+                <span>FUTURE FULL-STACK</span>
+                <span>INNOVATOR</span>
+                <span>COMPUTER ENGINEER</span>
+                <span>WEB DEVELOPER</span>
             </div>
             
-            <div class="skill-category fade-in-up" style="transition-delay: 0.2s">
-                <h3>Backend Development</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Node.js</span>
-                        <span>In progress</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 0%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JAVA</span>
-                        <span>20%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 20%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Python</span>
-                        <span>10%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 10%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>MySQL</span>
-                        <span>60%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 60%"></div>
-                    </div>
-                </div>
-            </div>
+            <p class="hero-desc">3rd-year Computer Engineering student crafting clean, responsive experiences across the galaxy.</p>
             
-            <div class="skill-category fade-in-up" style="transition-delay: 0.4s">
-                <h3>Tools & Others</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Git/GitHub</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Figma</span>
-                        <span>In progress</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 10%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Problem Solving</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
-                    </div>
-                </div>
+            <div class="hero-btns">
+                <a href="#contact" class="btn-primary" id="hireBtn">Hire Me</a>
+                <a href="CV.pdf" class="btn-outline" download>Download CV</a>
             </div>
-        </div>
-    </section>
-
-    <div class="skills-logos">
-    <div class="logo-container">
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-            <div class="logo-overlay">HTML5</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-            <div class="logo-overlay">CSS3</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-            <div class="logo-overlay">JavaScript</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
-            <div class="logo-overlay">C++</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-            <div class="logo-overlay">React</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-            <div class="logo-overlay">Python</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-            <div class="logo-overlay">MySQL</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-            <div class="logo-overlay">Git</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-            <div class="logo-overlay">GitHub</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-            <div class="logo-overlay">Java</div>
-        </div>
-        <div class="logo-item">
-     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
-            <div class="logo-overlay">PHP</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
-            <div class="logo-overlay">C#</div>
-        </div>
-        <div class="logo-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
-            <div class="logo-overlay">VS Code</div>
         </div>
     </div>
+
+    <div class="station" id="station-about" data-x="1800" data-y="0">
+        <div class="station-label">ABOUT</div>
+        <div class="station-panel">
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            
+            <p class="sec-eyebrow">▸ CREW DOSSIER</p>
+            <h2 class="sec-heading">ABOUT ME</h2>
+            
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="pictures/me.jpeg" alt="Omar Rodi" onerror="this.src='https://via.placeholder.com/200x200/1a0a3e/00ffe7?text=OMAR'">
+                    <div class="photo-pulse"></div>
+                    <div class="badge">COMPUTER ENGINEER</div>
+                </div>
+                <div>
+                    <div class="info-grid">
+                        <div class="info-row"><div class="lbl">NAME</div><div class="val">Omar Rodi</div></div>
+                        <div class="info-row"><div class="lbl">BASE</div><div class="val">Lefkoşa, N. Cyprus</div></div>
+                        <div class="info-row"><div class="lbl">ORIGIN</div><div class="val">Morocco 🇲🇦</div></div>
+                        <div class="info-row"><div class="lbl">STATUS</div><div class="val">3rd Year Student</div></div>
+                        <div class="info-row"><div class="lbl">EMAIL</div><div class="val">omarrodi2004@gmail.com</div></div>
+                        <div class="info-row"><div class="lbl">PHONE</div><div class="val">+212 6 42 68 79 81</div></div>
+                    </div>
+                    <div class="about-text">
+                        <p>Passionate Computer Engineering student with a strong focus on web development. I turn complex problems into simple, beautiful designs.</p>
+                        <p>When not coding, I explore new tech, contribute to open-source, or learn latest web trends.</p>
+                    </div>
+                    <a href="CV.pdf" class="btn-primary small" download>Download CV</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="station" id="station-projects" data-x="-1800" data-y="0">
+        <div class="station-label">PROJECTS</div>
+        <div class="station-panel">
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            
+            <p class="sec-eyebrow">▸ MISSION LOG</p>
+            <h2 class="sec-heading">MY PROJECTS</h2>
+            
+            <div class="projects-grid">
+                <div class="proj-card">
+                    <div class="proj-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>E-Commerce Website</h3>
+                    <p>Responsive platform with product filtering, cart & checkout.</p>
+                    <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JS</span></div>
+                    <div class="proj-links">
+                        <a href="https://marokey4.github.io/SitWeb-E-Commerce-Platform-for-Shoes/" class="plink" target="_blank">Live Demo</a>
+                        <a href="https://github.com/MAROKEY4/SitWeb-E-Commerce-Platform-for-Shoes" class="plink" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="proj-card">
+                    <div class="proj-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>Task Management App</h3>
+                    <p>Productivity app with drag-and-drop and progress tracking.</p>
+                    <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JS</span></div>
+                    <div class="proj-links">
+                        <a href="https://marokey4.github.io/List-To-Do/" class="plink" target="_blank">Live Demo</a>
+                        <a href="https://github.com/MAROKEY4/To-Do-List" class="plink" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="proj-card">
+    <div class="wip-tag">🚀 IN PROGRESS</div>
+    <div class="proj-icon"><i class="fas fa-paw"></i></div>
+    <h3>Wildlife Conservation System</h3>
+    <p>Full-stack platform for wildlife tracking, species monitoring, and conservation efforts with real-time data visualization.</p>
+    <div class="tags">
+        <span class="tag">HTML/CSS/JS</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">API</span>
+    </div>
+    <div class="proj-links">
+        <a href="https://wildlife-conservation-system.vercel.app" class="plink" target="_blank">Live Demo</a>
+        <a href="#" class="plink disabled">GitHub</a>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width: 65%"></div></div>
+    <div class="progress-text">65% Complete · Database + Backend in progress</div>
 </div>
-
-
-
-    <section id="projects" class="projects-section">
-        <h2 class="section-title">MY PROJECTS</h2>
-        <div class="projects-container">
-            <div class="project-card fade-in">
-                <div class="project-img">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">E-Commerce Website</h3>
-                    <p class="project-desc">A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JS</span>
+                
+                <div class="proj-card">
+                    <div class="wip-tag">🚀 IN PROGRESS</div>
+                    <div class="proj-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Flight Booking System</h3>
+                    <p>Full-stack flight booking with real-time database and modern stack.</p>
+                    <div class="tags"><span class="tag">React</span><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+                    <div class="proj-links">
+                        <a href="#" class="plink disabled">Live Demo</a>
+                        <a href="#" class="plink disabled">GitHub</a>
                     </div>
-                    <div class="project-links">
-                        <a href="https://marokey4.github.io/SitWeb-E-Commerce-Platform-for-Shoes/" class="project-link" target="_blank">Live Demo</a>
-                        <a href="https://github.com/MAROKEY4/SitWeb-E-Commerce-Platform-for-Shoes" class="project-link" target="_blank" >GitHub</a>
-                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 35%"></div></div>
+                    <div class="progress-text">35% Complete</div>
                 </div>
+                
             </div>
-            
-            <div class="project-card fade-in" style="transition-delay: 0.2s">
-                <div class="project-img">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Task Management website</h3>
-                    <p class="project-desc">A productivity Website for managing daily tasks with drag-and-drop functionality and progress tracking.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag"> JS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://marokey4.github.io/List-To-Do/" class="project-link" target="_blank">Live Demo</a>
-                        <a href="https://github.com/MAROKEY4/To-Do-List" class="project-link" target="_blank">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            
-         <div class="project-card fade-in" style="transition-delay: 0.4s">
-    <div class="project-img">
-        <i class="fas fa-code"></i>
-        <div class="in-progress-overlay">
-            <span>In Progress</span>
         </div>
     </div>
-    <div class="project-info">
-        <h3 class="project-title">Booking flight web application </h3>
-        <p class="project-desc">A web application by using new languages </p>
-        <div class="project-tech">
-            <span class="tech-tag">HTML/CSS</span>
-            <span class="tech-tag">JS</span>
-            <span class="tech-tag">REACT</span>
-            <span class="tech-tag">SQL</span>
-             <span class="tech-tag">PHP</span>
 
-        </div>
-        <div class="project-links">
-            <a href="#" class="project-link disabled">Live Demo</a>
-            <a href="#" class="project-link disabled">GitHub</a>
-        </div>
-        <div class="progress-indicator">
-            <div class="progress-text">Currently Working On It</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 25%"></div>
-            </div>
-            <div class="progress-percentage">25% Complete</div>
-        </div>
-    </div>
-</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-container">
-            <div class="contact-info fade-in-left">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Location</h3>
-                        <p>Lefkosa, North cyprus</p>
-                    </div>
+    <div class="station" id="station-skills" data-x="0" data-y="-1600">
+        <div class="station-label">SKILLS</div>
+        <div class="station-panel">
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            
+            <p class="sec-eyebrow">▸ SYSTEM SPECS</p>
+            <h2 class="sec-heading">TECH STACK</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>⚡ FRONTEND</h3>
+                    <div class="skill-item"><div class="skill-row"><span>HTML/CSS</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>JavaScript</span><span>45%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 45%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>React</span><span>20%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 20%"></div></div></div>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p><a href="mailto:omarrodi2004@gmail.com" target="_blank" style="text-decoration: none; color: rgb(4, 216, 8);" >omarrodi2004@gmail.com</a></p>
-                    </div>
+                <div class="skill-card">
+                    <h3>🛰 BACKEND</h3>
+                    <div class="skill-item"><div class="skill-row"><span>PHP</span><span>40%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 40%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>MySQL</span><span>60%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 60%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>Python</span><span>10%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 10%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>Java</span><span>20%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 20%"></div></div></div>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Phone</h3>
-                        <p><a href="tel:+212642687981"target="_blank" style="text-decoration: none; color: rgb(4, 216, 8);">+212 6 42 68 79 81</a></p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Website</h3>
-                        <p>In progress...</p>
-                    </div>
+                <div class="skill-card">
+                    <h3>🔧 TOOLS</h3>
+                    <div class="skill-item"><div class="skill-row"><span>Git/GitHub</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>VS Code</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>
+                    <div class="skill-item"><div class="skill-row"><span>Figma</span><span>10%</span></div><div class="skill-bar"><div class="skill-fill" style="width: 10%"></div></div></div>
                 </div>
             </div>
             
-            <div class="contact-form fade-in-right">
+            <div class="tech-logos" id="techLogos"></div>
+        </div>
+    </div>
+
+    <div class="station" id="station-contact" data-x="0" data-y="1600">
+        <div class="station-label">CONTACT</div>
+        <div class="station-panel">
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner tr"></div>
+            <div class="hud-corner bl"></div>
+            <div class="hud-corner br"></div>
+            
+            <p class="sec-eyebrow">▸ OPEN CHANNEL</p>
+            <h2 class="sec-heading">CONTACT ME</h2>
+            
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-list">
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label">LOCATION</div><div class="contact-value">Lefkoşa, North Cyprus</div></div></div>
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label">EMAIL</div><div class="contact-value"><a href="mailto:omarrodi2004@gmail.com">omarrodi2004@gmail.com</a></div></div></div>
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><div class="contact-label">PHONE</div><div class="contact-value"><a href="tel:+212642687981">+212 6 42 68 79 81</a></div></div></div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/MAROKEY4" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/omar-rodi-631632343" class="social-btn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@loop_coding" class="social-btn" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/ro.omarrr" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
                 <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <div class="form-group"><label>YOUR NAME</label><input type="text" class="form-control" id="contactName" required></div>
+                    <div class="form-group"><label>YOUR EMAIL</label><input type="email" class="form-control" id="contactEmail" required></div>
+                    <div class="form-group"><label>MESSAGE</label><textarea class="form-control" id="contactMessage" rows="4" required></textarea></div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> SEND MESSAGE</button>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/MAROKEY4" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/omar-rodi-631632343" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.tiktok.com/@loop_coding" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/o_rodi_" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+<div id="hud">
+    <div id="topnav">
+        <div class="nav-logo"><span class="bracket">{ }</span> OMAR RODI</div>
+        <ul id="navList">
+            <li><a href="#" data-section="home" class="active">Home</a></li>
+            <li><a href="#" data-section="about">About</a></li>
+            <li><a href="#" data-section="skills">Skills</a></li>
+            <li><a href="#" data-section="projects">Projects</a></li>
+            <li><a href="#" data-section="contact">Contact</a></li>
+        </ul>
+        <i class="fa-solid fa-bars" id="menuToggle"></i>
+    </div>
+    
+    <div id="locationHud">
+        CURRENT SECTOR: <span id="currentSector">ORIGIN</span>
+    </div>
+    
+    <div id="compass">
+        <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="24" stroke="rgba(0,255,231,0.3)" stroke-width="1" fill="none"/>
+            <text x="26" y="10" text-anchor="middle" fill="var(--accent)" font-size="8" font-family="Orbitron">N</text>
+            <text x="26" y="46" text-anchor="middle" fill="rgba(0,255,231,0.5)" font-size="8" font-family="Orbitron">S</text>
+            <text x="8" y="29" text-anchor="middle" fill="rgba(0,255,231,0.5)" font-size="8" font-family="Orbitron">W</text>
+            <text x="44" y="29" text-anchor="middle" fill="rgba(0,255,231,0.5)" font-size="8" font-family="Orbitron">E</text>
+            <polygon id="compassNeedle" points="26,14 28,28 26,25 24,28" fill="var(--accent)"/>
+        </svg>
+    </div>
+    
+    <div id="controlsHint">
+        <span><kbd>🖱️ DRAG</kbd> Fly</span>
+        <span><kbd>WASD/▲▼◀▶</kbd> Roam</span>
+        <span><kbd>⬇️ SCROLL</kbd> Zoom</span>
+        <span><kbd>⚡ SHIFT</kbd> Boost</span>
+        <span><kbd>🏠 H</kbd> Home</span>
+    </div>
+</div>
+
+<div id="notification">✓ SIGNAL TRANSMITTED</div>
+
+
+
+<div id="soundControl">
+    <i class="fas fa-music"></i>
+</div>
+
+<div id="aiChatbot">
+    <div id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+        <span>AI</span>
+    </div>
+    <div id="chatbotWindow">
+        <div id="chatbotHeader">
+            <span><i class="fas fa-microchip"></i> OMAR AI</span>
+            <button id="closeChatbot"><i class="fas fa-times"></i></button>
         </div>
-        <p class="copyright">© 2025 Omar Rodi. All Rights Reserved.</p>
-    </footer>
+        <div id="chatbotMessages">
+            <div class="ai-message">
+                <i class="fas fa-robot"></i>
+                <span>Hello! I'm Omar's AI assistant. Ask me anything about Omar's skills, experience, or projects! 🚀</span>
+            </div>
+        </div>
+        <div id="chatbotInputArea">
+            <input type="text" id="chatbotInput" placeholder="Ask me anything..." autocomplete="off">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div id="chatbotSuggestions">
+            <button class="suggestion-btn">Skills?</button>
+            <button class="suggestion-btn">Projects?</button>
+            <button class="suggestion-btn">Experience?</button>
+            <button class="suggestion-btn">Contact?</button>
+        </div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
